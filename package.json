@@ -1,0 +1,16 @@
+{
+  "name": "archive-bot",
+  "version": "1.0.0",
+  "description": "A matrix bot that archives messages from rooms to the local filesystem",
+  "main": "src/index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "matrix",
+    "bot",
+    "archive"
+  ],
+  "author": "thomas.halwax@syncpoint.io",
+  "license": "ISC"
+}
