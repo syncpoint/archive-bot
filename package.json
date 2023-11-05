@@ -12,5 +12,11 @@
     "archive"
   ],
   "author": "thomas.halwax@syncpoint.io",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "luxon": "^3.4.3",
+    "matrix-bot-sdk": "^0.7.0"
+  }
 }
