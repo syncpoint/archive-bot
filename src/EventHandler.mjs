@@ -34,8 +34,8 @@ export default class EventHandler {
     await this.prepareProfile()
 
     // Set up the event handler
-    this.client.on('room.message', this.onEvent.bind(this))
     this.client.on('room.invite', this.onEvent.bind(this))
+    this.client.on('room.event', this.onEvent.bind(this))
   }
 
   async onEvent(roomId, ev) {

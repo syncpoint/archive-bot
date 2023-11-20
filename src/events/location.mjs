@@ -3,13 +3,21 @@ import { hsISOTimestamp } from './commons.mjs'
 import path from 'path'
 import { appendFile } from 'fs/promises'
 
-const key = 'm.room.message/m.text'
+const LOCATION_KEY = 'm.room.message/m.location'
+const BEACON_KEY = 'org.matrix.msc3672.beacon'
+const PREFIX = 'org.matrix.msc3488'
 
 const handle = (client, archiveRootPath) => async (roomId, event) => {
-  LogService.debug(key, 'handling text message')
+  const key = event.type === BEACON_KEY ? BEACON_KEY : LOCATION_KEY
+
+  LogService.debug(key, 'handling location message')
+  const tsPropertyName = `${PREFIX}.ts`
+  const locationTS = event.content[tsPropertyName]
+  const locationTSISO = hsISOTimestamp(locationTS)
+  const location = event.content[`${PREFIX}.location`].uri
   const content = ['']
   content.push(`#### ${hsISOTimestamp(event.origin_server_ts)} - ${event.sender}`)
-  content.push(event.content.body)
+  content.push(`Standort um ${locationTSISO}: ${location}`)
 
   const outputPath = path.join(
                       archiveRootPath,
@@ -27,5 +35,6 @@ const handle = (client, archiveRootPath) => async (roomId, event) => {
 }
 
 export const register = (client, handler, archiveRootPath) => {
-  handler[key] = handle(client, archiveRootPath)
+  handler[LOCATION_KEY] = handle(client, archiveRootPath)
+  handler[BEACON_KEY] = handle(client, archiveRootPath)
 }

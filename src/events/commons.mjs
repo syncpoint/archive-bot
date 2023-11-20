@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon'
 
-const hsISOTimestamp = (event) => {
-  const ts = DateTime.fromMillis(event.origin_server_ts)
-  return ts.toISO({ suppressMilliseconds: true })
+const hsISOTimestamp = (ts) => {
+  const pointInTime = DateTime.fromMillis(ts)
+  return pointInTime.toISO({ suppressMilliseconds: true })
 }
 
 export {

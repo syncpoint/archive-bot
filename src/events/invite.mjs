@@ -12,34 +12,10 @@ const handle = (client, archiveRootPath) => async (roomId, event) => {
     return
   }
 
-
-
-  /*
-  {
-  type: "m.room.member",
-  sender: "@rocky:thomass-macbook-pro.local",
-  content: {
-    membership: "invite",
-    displayname: "archie",
-  },
-  state_key: "@archie:thomass-macbook-pro.local",
-  origin_server_ts: 1699006217708,
-  unsigned: {
-    replaces_state: "$XLnCHOei1FuL1vqUgePYxLX6vMv2u0--6Kp57m5JUK4",
-    prev_content: {
-      membership: "leave",
-    },
-    prev_sender: "@rocky:thomass-macbook-pro.local",
-    age: 116,
-  },
-  event_id: "$zZFUMVpKulmB5CiuQcVj-1HEbaEbIGrXkZQcgqEs6NU",
-}
-  */
-  
   const roomArchivePath = path.join(
                             archiveRootPath, 
                             roomId.replaceAll('!','').replaceAll(':','.'),
-                            content
+                            'content'
                           )
 
   try {
